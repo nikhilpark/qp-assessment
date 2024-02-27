@@ -34,7 +34,7 @@ npm install
 npm run seed
 ```
 
-###Running the Application
+### Running the Application
 
 ```bash
 # Run the application
