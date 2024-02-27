@@ -45,11 +45,11 @@ npm start
 ### Building Docker image
 
 ```bash
-docker build -t your-app-name .
+docker build -t qp-assessment .
 ```
 
 ### Running Docker Container
 
 ```bash
-docker run -p 3000:3000 your-app-name
+docker run -p 3000:3000 qp-assessment
 ```
