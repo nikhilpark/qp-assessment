@@ -34,11 +34,23 @@ npm install
 #Seed the database
 npm run seed
 ```
+
+###Running the Application
+
+```bash
 # Run the application
 npm start
+```
+## Dockerization
 
-# Build the Docker image
+### Building Docker image
+
+```bash
 docker build -t your-app-name .
+```
 
-# Run the Docker container
+### Running Docket Container
+
+```bash
 docker run -p 3000:3000 your-app-name
+```
