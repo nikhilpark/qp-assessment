@@ -1,6 +1,5 @@
-# Your Project Name
+# Groccerry API
 
-Brief description of your project.
 
 ## Table of Contents
 
@@ -19,7 +18,7 @@ Brief description of your project.
 ## Getting Started
 
 ### Prerequisites
-Node.js installed
+Node.js 
 
 
 ### Installing Dependencies
