@@ -1,5 +1,4 @@
 
-//@ts-nocheck
 const { Sequelize } = require('sequelize');
 const sequelize = new Sequelize({
   dialect: 'sqlite',
@@ -7,57 +6,9 @@ const sequelize = new Sequelize({
 }); // Replace with your SQLite database connection
 
 
-const generateRandomPrice = () => {
-  return parseFloat((Math.random() * (10 - 0.5) + 0.5).toFixed(2));
-};
 
-const generateRandomQuantity = () => {
-  return Math.floor(Math.random() * (100 - 10 + 1) + 10);
-};
 
-const generateGroceryItems = (count) => {
-  const items = [];
-  for (let i = 0; i < count; i++) {
-    const item = {
-      id: i + 1,
-      item_name: `Item${i + 1}`,
-      item_price: (i + 1) * 1.5,  // Adjust as needed
-      item_quantity: Math.floor(Math.random() * 50) + 10,  // Random quantity between 10 and 60
-      item_code: `ITEM${i + 1}`,
-    };
-    items.push(item);
-  }
-  return items;
-};
 
-const generateGroceryOrdersAndItems = (items) => {
-  const orders = [];
-  const orderItems = [];
-
-  items.forEach((item) => {
-    const order = {
-      order_id: orders.length + 1,
-      order_price: 0,
-    };
-
-    // Random quantity between 1 and item_quantity
-    const quantity = Math.floor(Math.random() * item.item_quantity) + 1;
-
-    const orderItem = {
-      quantity,
-      item_code: item.item_code,
-      order_id: order.order_id,
-    };
-
-    // Update order price based on the calculated item price
-    order.order_price += item.item_price * quantity;
-
-    orders.push(order);
-    orderItems.push(orderItem);
-  });
-
-  return { orders, orderItems };
-};
 
 const generateSeedData = () => {
 
