@@ -27,10 +27,13 @@ Node.js installed
 ```bash
 # Install project dependencies
 npm install
+```
+### Setting Up the Database
 
+```bash
 #Seed the database
 npm run seed
-
+```
 # Run the application
 npm start
 
