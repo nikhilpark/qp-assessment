@@ -49,7 +49,7 @@ npm start
 docker build -t your-app-name .
 ```
 
-### Running Docket Container
+### Running Docker Container
 
 ```bash
 docker run -p 3000:3000 your-app-name
