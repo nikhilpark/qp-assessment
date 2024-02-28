@@ -13,20 +13,26 @@
   - [Building Docker Image](#building-docker-image)
   - [Running Docker Container](#running-docker-container)
  - [Documentation](#documentation)
-	  - [Admin Endpoints](#admin)
+	  - [Admin Endpoints](#admin-endpoints)
 		  - [Add Grocery Item](#add-grocery-item)
 		  - [Remove Grocery Item](#remove-grocery-item)
 		  - [View Grocery Items](#view-grocery-items)
 		  - [Update Grocery Item](#update-grocery-item)
 		  - [Manage Inventory](#manage-inventory)
 		  - [Get Orders](#get-orders)
-	  - [User Endpoints](#user)
+	  - [User Endpoints](#user-endpoints)
+	      - [Get Available Grocery Items](#get-available-grocery-items)
+	      - [Place An Order](#place-an-order)
 	 
 
 ## Getting Started
+Tools used:
+
+typescript, express, sqlite3, sequelize
+
 
 ### Prerequisites
-Node.js 
+node.js, npm
 
 
 ### Installing Dependencies
@@ -64,11 +70,11 @@ docker run -p 3000:3000 qp-assessment
 
 ## Documentation
 
-### Admin
-### 1. Add Grocery Item 
- ### Endpoint : `POST /api/addGroceryItem` 
- #### Description:  This endpoint allows the addition of a new grocery item to the system. 
- #### Request  
+### Admin Endpoints
+## Add Grocery Item
+### Endpoint : `POST /admin/addGroceryItem` 
+#### Description:  This endpoint allows the addition of a new grocery item to the system. 
+#### Request  
 -  **Method:**  `POST`
 -  **Content-Type:**  `application/json`
 -  **Body:**
@@ -78,9 +84,9 @@ docker run -p 3000:3000 qp-assessment
 	 -  `item_description` (string): Description of the grocery item.
 	 -  `item_code` (string): Unique code assigned to the grocery item.
 
-### 2. Remove Grocery Item
+## Remove Grocery Item
   
-### Endpoint : `POST /api/removeGroceryItem`
+### Endpoint : `POST /admin/removeGroceryItem`
 #### Description: This endpoint allows the removal of an existing grocery item from the system.
 #### Request
 -  **Method:**  `POST` 
@@ -88,37 +94,59 @@ docker run -p 3000:3000 qp-assessment
  -  **Body:**  
 		 -  `item_code` (string): Unique code assigned to the grocery item.
 
-### 3. View Grocery Items  
-### Endpoint:  `GET /api/viewGroceryItems`  
+## View Grocery Items  
+### Endpoint:  `GET /admin/viewGroceryItems`  
 #### Description:  This endpoint retrieves a list of all grocery items from the system. 
 #### Request  
 -  **Method:**  `GET`  
 -  **Content-Type:**  `application/json`
 
-### 4. Update Grocery Item
-### Endpoint:  `POST /api/updateGroceryItem`
+## Update Grocery Item
+### Endpoint:  `POST /admin/updateGroceryItem`
 #### Description:  This endpoint allows the update of an existing grocery item in the system. 
 #### Request  -  
    -  **Method:**  `POST`  
    -  **Content-Type:**  `application/json`  
-   -  **Body:**  -  `item_code` (string): Unique code assigned to the grocery item. 
-						   -  `updateParameters` (object): Object containing fields to update.
-								    Allowed fields: 'item_name', 'item_price', 'item_description'.
+   -  **Body:**
+       -    `item_code` (string): Unique code assigned to the grocery item.
+       -   `updateParameters` (object): Object containing fields to update.
+                        Allowed fields: 'item_name', 'item_price', 'item_description'.
 
-### 5. Manage Inventory  
-### Endpoint:  `POST /api/manageInventory`
+## Manage Inventory  
+### Endpoint:  `POST /admin/manageInventory`
 #### Description:  This endpoint allows the management of the inventory for a given grocery item. 
 #### Request  
 -  **Method:**  `POST`  
 -  **Content-Type:**  `application/json`  
--  **Body:**  
+-  **Body:**
 	 -  `item_code` (string): Unique code assigned to the grocery item. 
 	 -  `action` (string): Action to perform on the inventory ('increase' or 'decrease'). 
 	 -  `quantity` (number): Quantity to increase or decrease. Should be a non-zero number.
 
-### 6. Get Orders  
-### Endpoint:   `GET /api/getOrders`  
+## Get Orders  
+### Endpoint:   `GET /admin/getOrders`  
 #### Description:  This endpoint retrieves a list of all grocery orders placed by users along with their details.
 #### Request  
 -  **Method:**  `GET`  
 -  **Content-Type:**  `application/json`
+
+
+### User Endpoints
+
+## Get Available Grocery Items  
+### Endpoint:   `GET /user/getGroceryItems`  
+#### Description:  This endpoint retrieves a list of available grocery items that have a positive quantity in the inventory. 
+#### Request  
+-  **Method:**  `GET`  
+-  **Content-Type:**  `application/json`
+
+## Place an Order  
+### Endpoint:  `POST /user/placeAnOrder`  
+#### Description:  This endpoint allows users to place a new grocery order. 
+#### Request  
+-  **Method:**  `POST`  
+-  **Content-Type:**  `application/json`  
+-  **Body:**
+    -  `items` (array of objects): List of items to be ordered. 
+          -  `item_code` (string): Unique code assigned to the grocery item.
+          - `item_quantity` (number): Quantity of the grocery item to be ordered
