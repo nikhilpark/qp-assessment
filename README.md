@@ -1,5 +1,5 @@
 
-# Groccerry API
+# Grocery API
 
 
 ## Table of Contents
